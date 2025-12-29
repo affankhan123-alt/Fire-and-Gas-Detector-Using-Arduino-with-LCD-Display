@@ -1,0 +1,27 @@
+int gas = A0;
+int flame = 2;
+int buzzer = 8;
+
+void setup() {
+  pinMode(flame, INPUT);
+  pinMode(buzzer, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int gasValue = analogRead(gas);
+  int flameValue = digitalRead(flame);
+
+  Serial.print("Gas: ");
+  Serial.print(gasValue);
+  Serial.print("  Flame: ");
+  Serial.println(flameValue);
+
+  if (gasValue > 300 || flameValue == 0) {
+    digitalWrite(buzzer, HIGH);
+  } else {
+    digitalWrite(buzzer, LOW);
+  }
+
+  delay(200);
+}
